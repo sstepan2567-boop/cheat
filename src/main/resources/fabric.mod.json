@@ -1,0 +1,32 @@
+{
+	"schemaVersion": 1,
+	"id": "cheat",
+	"version": "${version}",
+	"name": "Cheat",
+	"description": "Fabric client mod: movement/combat bypass modes, disabler layer and diagnostics.",
+	"authors": [
+		"sstepan2567"
+	],
+	"contact": {
+		"sources": "https://github.com/sstepan2567-boop/cheat"
+	},
+	"license": "All Rights Reserved",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"com.cheat.CheatClient"
+		]
+	},
+	"mixins": [
+		{
+			"config": "cheat.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.20.1",
+		"minecraft": "~1.21.4",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}

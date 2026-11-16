@@ -42,6 +42,7 @@ public final class CheatClient implements ClientModInitializer {
         WorldRenderEvents.AFTER_ENTITIES.register(context ->
                 ModuleManager.getModules().stream()
                         .filter(module -> module instanceof com.cheat.visual.VisualModule)
+                        .filter(com.cheat.module.Module::isEnabled)
                         .forEach(module -> ((com.cheat.visual.VisualModule) module).render(context)));
     }
 

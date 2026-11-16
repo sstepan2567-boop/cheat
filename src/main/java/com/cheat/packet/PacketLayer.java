@@ -25,17 +25,19 @@ public final class PacketLayer {
 
     /**
      * Sends a packet straight through the network handler, skipping the outgoing event.
-     * Used by modules that rewrite an outgoing packet.
+     * Used by modules that rewrite an outgoing packet. Suppression is restored to its
+     * previous value so nested rewrites do not clear an outer suppression early.
      */
     public static void sendRaw(MinecraftClient client, Packet<?> packet) {
         if (client == null || client.getNetworkHandler() == null) {
             return;
         }
+        boolean previous = SUPPRESSED.get();
         SUPPRESSED.set(true);
         try {
             client.getNetworkHandler().sendPacket(packet);
         } finally {
-            SUPPRESSED.set(false);
+            SUPPRESSED.set(previous);
         }
     }
 }
